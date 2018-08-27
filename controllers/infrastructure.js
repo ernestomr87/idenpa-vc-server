@@ -18,7 +18,9 @@ module.exports = {
 	},
 
 	getById(req, res) {
-		return Infrastructure.findById(req.params.id, {
+		const id = parseInt(req.params.id);
+		return Infrastructure.findOne({
+			where: { gid: id },
 			include: [
 				{
 					model: Inversion,
@@ -26,8 +28,8 @@ module.exports = {
 				}
 			]
 		})
-			.then((infrastructures) => {
-				if (!infrastructures) {
+			.then((infrastructure) => {
+				if (!infrastructure) {
 					return res.status(404).send({
 						message: 'Infrastructure Not Found'
 					});

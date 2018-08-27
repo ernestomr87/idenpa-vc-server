@@ -1,20 +1,19 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
 
-const infrastructureController = require('../controllers').infrastructure;
-const inversionController = require('../controllers').inversion;
+import { default as controllers } from '../controllers';
+const { infrastructure, inversion } = controllers;
 
-router.get('/api/infrastructure', infrastructureController.list);
-router.get('/api/infrastructure/:id', infrastructureController.getById);
-router.post('/api/infrastructure', infrastructureController.add);
-router.put('/api/infrastructure/:id', infrastructureController.update);
-router.delete('/api/infrastructure/:id', infrastructureController.delete);
+router.get('/api/infrastructure', infrastructure.list);
+router.get('/api/infrastructure/:id', infrastructure.getById);
+router.post('/api/infrastructure', infrastructure.add);
+router.put('/api/infrastructure/:id', infrastructure.update);
+router.delete('/api/infrastructure/:id', infrastructure.delete);
 
-router.get('/api/inversion', inversionController.list);
-router.get('/api/inversion/:id', inversionController.getById);
-router.post('/api/inversion', inversionController.add);
-router.put('/api/inversion/:id', inversionController.update);
-router.delete('/api/inversion/:id', inversionController.delete);
+router.get('/api/inversion', inversion.list);
+router.get('/api/inversion/:id', inversion.getById);
+router.post('/api/inversion', inversion.add);
+router.put('/api/inversion/:id', inversion.update);
+router.delete('/api/inversion/:id', inversion.delete);
 
-
-module.exports = router;
+export default router;

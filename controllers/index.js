@@ -1,7 +1,4 @@
-const infrastructure = require('./infrastructure');
-const inversion = require('./inversion');
+import infrastructure from './infrastructure';
+import inversion from './inversion';
 
-module.exports = {
-	infrastructure,
-	inversion
-};
+export default { infrastructure, inversion };

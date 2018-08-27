@@ -3,7 +3,10 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"start": "nodemon --exec ./node_modules/.bin/babel-node ./bin/www --ignore public/"
+		"client": "cd client && yarn start",
+		"client-build": "cd client && yarn build",
+		"server": "cd api && nodemon app.js  --watch ./../bin/www --exec ./../node_modules/.bin/babel-node",
+		"dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
 	},
 	"dependencies": {
 		"cookie-parser": "~1.4.3",

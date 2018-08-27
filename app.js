@@ -15,7 +15,7 @@ app.use(
   })
 );
 
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
 
 const env = process.env.NODE_ENV || 'production';
 
@@ -25,6 +25,12 @@ if (env === 'production') {
   // Handle React routing, return all requests to React app
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, './client/build', 'index.html'));
+  });
+}
+
+if (env === 'development') {
+  app.get('/*', function(req, res) {
+    res.send('REST API running in development mode');
   });
 }
 

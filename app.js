@@ -1,40 +1,15 @@
-'use strict';
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var index = require('./api/routes/index');
+var app = express();
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+app.use(morgan('dev'));
 
-var _express = require('express');
-
-var _express2 = _interopRequireDefault(_express);
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
-var _bodyParser = require('body-parser');
-
-var _bodyParser2 = _interopRequireDefault(_bodyParser);
-
-var _morgan = require('morgan');
-
-var _morgan2 = _interopRequireDefault(_morgan);
-
-var _index = require('./api/routes/index');
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var app = (0, _express2.default)();
-
-app.use((0, _morgan2.default)('dev'));
-
-app.use(_bodyParser2.default.json());
+app.use(bodyParser.json());
 app.use(
-  _bodyParser2.default.urlencoded({
+  bodyParser.urlencoded({
     extended: false
   })
 );
@@ -45,16 +20,16 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', _index2.default);
+app.use('/', index);
 
 var env = process.env.NODE_ENV || 'production';
 
 if (env === 'production') {
   // Serve any static files
-  app.use(_express2.default.static(_path2.default.join(__dirname, './build')));
+  app.use(express.static(path.join(__dirname, './build')));
   // Handle React routing, return all requests to React app
   app.get('*', function(req, res) {
-    res.sendFile(_path2.default.join(__dirname, './build', 'index.html'));
+    res.sendFile(path.join(__dirname, './build', 'index.html'));
   });
 }
 
@@ -64,4 +39,4 @@ if (env === 'development') {
   });
 }
 
-exports.default = app;
+module.exports = app;

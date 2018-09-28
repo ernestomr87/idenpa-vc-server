@@ -1,20 +1,14 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+var models = require('./../models');
 
-var _models = require('./../models');
-
-var _models2 = require('../models');
-
-exports.default = {
+module.exports = {
   list: function list(req, res) {
-    return _models2.reg_inver_planif
+    return models.reg_inver_planif
       .findAll({
         include: [
           {
-            model: _models.entidad,
+            model: models.entidad,
             as: 'entidad'
           }
         ]
@@ -27,11 +21,11 @@ exports.default = {
       });
   },
   getById: function getById(req, res) {
-    return _models2.reg_inver_planif
+    return models.reg_inver_planif
       .findById(req.params.id, {
         include: [
           {
-            model: _models.entidad,
+            model: models.entidad,
             as: 'infrastructure'
           }
         ]
@@ -49,7 +43,7 @@ exports.default = {
       });
   },
   add: function add(req, res) {
-    return _models2.reg_inver_planif
+    return models.reg_inver_planif
       .create({
         id_entidad: req.body.id_entidad,
         inversion_name: req.body.inversion_name
@@ -62,11 +56,11 @@ exports.default = {
       });
   },
   update: function update(req, res) {
-    return _models2.reg_inver_planif
+    return models.reg_inver_planif
       .findById(req.params.id, {
         include: [
           {
-            model: _models.entidad,
+            model: models.entidad,
             as: 'infrastructure'
           },
           {
@@ -97,7 +91,7 @@ exports.default = {
       });
   },
   delete: function _delete(req, res) {
-    return _models2.reg_inver_planif
+    return models.reg_inver_planif
       .findById(req.params.id)
       .then(function(inversion) {
         if (!inversion) {

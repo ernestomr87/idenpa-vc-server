@@ -3,6 +3,7 @@
 		"username": "root",
 		"password": "root",
 		"database": "ide_agric_vcl",
+		"databaseTV": "dbtarea_vida",
 		"host": "192.168.0.11",
 		"dialect": "postgres"
 	},

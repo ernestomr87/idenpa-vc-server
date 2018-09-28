@@ -1,22 +1,12 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+var models = require('../models');
 
-var _models = require('../models');
-
-var _models2 = _interopRequireDefault(_models);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var Infrastructure = _models2.default.entidad,
-  Inversion = _models2.default.reg_inver_planif; // import { entidad as Infrastructure } from './../models';
+var Infrastructure = models.entidad,
+  Inversion = models.reg_inver_planif; // import { entidad as Infrastructure } from './../models';
 // import { reg_inver_planif as Inversion } from '../models';
 
-exports.default = {
+module.exports = {
   list: function list(req, res) {
     return Infrastructure.findAll({
       include: [

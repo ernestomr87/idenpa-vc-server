@@ -1,11 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-exports.default = function(sequelize, DataTypes) {
-  var Inversion = sequelize.define(
+module.exports = function(sequelize, DataTypes) {
+  let Inversion = sequelize.define(
     'reg_inver_planif',
     {
       id: {

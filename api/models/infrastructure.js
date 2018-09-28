@@ -1,11 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-exports.default = function(sequelize, DataTypes) {
-  var Infrastructure = sequelize.define(
+module.exports = function(sequelize, DataTypes) {
+  let Infrastructure = sequelize.define(
     'entidad',
     {
       gid: {

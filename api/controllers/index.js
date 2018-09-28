@@ -1,19 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+const infrastructure = require('./infrastructure');
 
-var _infrastructure = require('./infrastructure');
+const inversion = require('./inversion');
 
-var _infrastructure2 = _interopRequireDefault(_infrastructure);
+const afectaciones = require('./afectaciones');
 
-var _inversion = require('./inversion');
-
-var _inversion2 = _interopRequireDefault(_inversion);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-exports.default = { infrastructure: _infrastructure2.default, inversion: _inversion2.default };
+module.exports = { infrastructure: infrastructure, inversion: inversion, afectaciones: afectaciones };

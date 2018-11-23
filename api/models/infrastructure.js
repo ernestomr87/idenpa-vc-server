@@ -14,7 +14,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     {
       timestamps: false,
-      schema: 'infraestructura'
+      schema: 'infraestructura',
+
     }
   );
 
@@ -25,6 +26,7 @@ module.exports = function(sequelize, DataTypes) {
       sourceKey: 'gid',
       as: 'inversions'
     });
+    
   };
   return Infrastructure;
 };

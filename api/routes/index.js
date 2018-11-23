@@ -8,12 +8,8 @@ var infrastructure = controllers.infrastructure,
   inversion = controllers.inversion;
 
 //  Infrastructure REST-API//  Infrastructure REST-API
-
-router.get('/api/infrastructure', infrastructure.list);
 router.get('/api/infrastructure/:id', infrastructure.getById);
-router.post('/api/infrastructure', infrastructure.add);
-router.put('/api/infrastructure/:id', infrastructure.update);
-router.delete('api/infrastructure/:id', infrastructure.delete);
+
 
 //  Inversion REST-API
 router.get('/api/inversion', inversion.list);
@@ -24,5 +20,6 @@ router.delete('api/inversion/:id', inversion.delete);
 
 //  Inversion REST-API
 router.get('/api/afectaciones/agroproductividad', afectaciones.agroproductividad);
+router.get('/api/afectaciones/test', afectaciones.test);
 
 module.exports = router;

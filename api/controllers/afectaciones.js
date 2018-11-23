@@ -27,5 +27,17 @@ module.exports = {
       .catch((error) => {
         res.status(400).send(error);
       });
+  },
+  test:function (req,res) {
+    let query = `select * from get_afectsuelo('all') as (area double precision, group_gid integer[],cat text)`;
+
+    sequelize
+      .query(query, { type: sequelize.QueryTypes.SELECT })
+      .then((data) => {
+        return res.status(200).send(data);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
   }
 };

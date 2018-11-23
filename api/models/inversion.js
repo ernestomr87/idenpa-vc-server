@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     {
       timestamps: false,
-      schema: 'inversiones'
+      schema: 'inversiones',
     }
   );
 

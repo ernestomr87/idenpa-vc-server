@@ -20,6 +20,9 @@ router.delete('api/inversion/:id', inversion.delete);
 
 //  Inversion REST-API
 router.get('/api/afectaciones/agroproductividad', afectaciones.agroproductividad);
-router.get('/api/afectaciones/test', afectaciones.test);
+router.get('/api/afectaciones/agroproductividad/:municipio', afectaciones.agroproductividadByMun);
+router.get('/api/afectaciones/parcelasAfectadas', afectaciones.parcelasAfectadas);
+router.get('/api/afectaciones/parcelasAfectadas/:municipio', afectaciones.parcelasAfectadasByMun);
+
 
 module.exports = router;

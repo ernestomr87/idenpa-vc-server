@@ -51,12 +51,13 @@ module.exports = {
   usoTenencia: function list(req, res) {
     const id = req.params.id;
     console.log(id);
+
     let query = `
     select qposeedor, nombre_poseedor, nombre_sup, geom 
-    from
-    (select poseedor_quemado.identidad,poseedor_quemado.nombre as nombre_poseedor, quemado.poseedor as qposeedor, quemado.nombre as nombre_sup, ST_AsGeoJSON(quemado.geom) as geom
-    from catastro.poseedor_quemado inner join catastro.quemado on catastro.poseedor_quemado.identidad = catastro.quemado.poseedor
-    where poseedor_quemado.asociado = '${id}') as tabla`;
+from
+(select poseedor_quemado.identidad,poseedor_quemado.nombre as nombre_poseedor, quemado.poseedor as qposeedor, quemado.nombre as nombre_sup, ST_AsGeoJSON(quemado.geom) as geom
+from catastro.poseedor_quemado inner join catastro.quemado on catastro.poseedor_quemado.identidad = catastro.quemado.poseedor
+where poseedor_quemado.asociado = '${id}') as tabla`;
 
 
     sequelize
@@ -64,9 +65,22 @@ module.exports = {
         type: sequelize.QueryTypes.SELECT
       })
       .then(data => {
-        let ndata = data.map((item) => {
-          return item.geom;
+        let ndata = data.map((item,index) => {
+          let json = {
+            type: 'Feature',
+            id: `ustenecia.${index}`,
+            geometry:item.geom,
+            geometry_name: 'geom',
+            properties: {
+              'qposeedor': item.qposeedor,
+              'nombre_poseedor': item.nombre_poseedor,
+              'nombre_sup': item.nombre_sup,
+            }
+          };
+          return json;
         });
+
+        
         return res.status(200).send(ndata);
       })
       .catch(error => {

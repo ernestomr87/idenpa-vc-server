@@ -24,6 +24,10 @@ router.get('/api/afectaciones/agroproductividad', afectaciones.agroproductividad
 router.get('/api/afectaciones/agroproductividad/:municipio', afectaciones.agroproductividadByMun);
 router.get('/api/afectaciones/parcelasAfectadas', afectaciones.parcelasAfectadas);
 router.get('/api/afectaciones/parcelasAfectadas/:municipio', afectaciones.parcelasAfectadasByMun);
+router.get('/api/afectaciones/usufructuariosAfectados', afectaciones.usufructuariosAfectados);
+router.get('/api/afectaciones/usufructuariosAfectados/:municipio', afectaciones.usufructuariosAfectadosByMun);
+router.get('/api/afectaciones/ascensoDelNivelMedioDelMar', afectaciones.ascensoDelNivelMedioDelMar);
+router.get('/api/afectaciones/ascensoDelNivelMedioDelMar/:municipio', afectaciones.ascensoDelNivelMedioDelMarByMun);
 
 //  Sistema Agricola REST-API
 router.get('/api/sitema_agricola/forma_prodictiva/:id', sitema_agricola.forma_prodictiva);

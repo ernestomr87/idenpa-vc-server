@@ -11,7 +11,7 @@ var sequelize = new Sequelize(
 
 module.exports = {
   agroproductividad: function list(req, res) {
-    let query = 'select * from get_afectsuelo(\'all\') as (area double precision, group_gid integer[],cat text)';
+    let query = `select * from get_afectsuelo(\'all\') as (area double precision, group_gid integer[],cat text)`;
 
     sequelize
       .query(query, { type: sequelize.QueryTypes.SELECT })
@@ -70,5 +70,72 @@ module.exports = {
       .catch(error => {
         res.status(400).send(error);
       });
-  }  
+  },
+  usufructuariosAfectados: function list(req, res) {
+    let query = `select * from get_afectsuelo(\'all\') as (area double precision, group_gid integer[],cat text)`;
+
+    sequelize
+      .query(query, { type: sequelize.QueryTypes.SELECT })
+      .then(data => {
+        return res.status(200).send(data);
+      })
+      .catch(error => {
+        res.status(400).send(error);
+      });
+  },
+  usufructuariosAfectadosByMun: function list(req, res) {
+    const municipio = req.params.municipio;
+    let query = `select * from get_afectsuelo('${municipio}') as (area double precision, group_gid integer[],municipio character varying(50),cat text)`;
+
+    sequelize
+      .query(query, { type: sequelize.QueryTypes.SELECT })
+      .then(data => {
+        return res.status(200).send(data);
+      })
+      .catch(error => {
+        res.status(400).send(error);
+      });
+  },
+  ascensoDelNivelMedioDelMar: function list(req, res) {
+    let query = `SELECT
+    ascenso_nmm.gid, 
+    ascenso_nmm.municipio, 
+    ascenso_nmm.area, 
+    ascenso_nmm.distancia_ascenso, 
+    ascenso_nmm.year_ascenso
+  FROM 
+    public.ascenso_nmm
+  `;
+
+    sequelize
+      .query(query, { type: sequelize.QueryTypes.SELECT })
+      .then(data => {
+        return res.status(200).send(data);
+      })
+      .catch(error => {
+        res.status(400).send(error);
+      });
+  },
+  ascensoDelNivelMedioDelMarByMun: function list(req, res) {
+    const municipio = req.params.municipio;
+    let query = `SELECT 
+    ascenso_nmm.gid, 
+    ascenso_nmm.municipio, 
+    ascenso_nmm.area, 
+    ascenso_nmm.distancia_ascenso, 
+    ascenso_nmm.year_ascenso
+  FROM 
+    public.ascenso_nmm
+  WHERE 
+    ascenso_nmm.municipio = '${municipio}'`;
+
+    sequelize
+      .query(query, { type: sequelize.QueryTypes.SELECT })
+      .then(data => {
+        return res.status(200).send(data);
+      })
+      .catch(error => {
+        res.status(400).send(error);
+      });
+  }
 };

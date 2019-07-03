@@ -137,5 +137,44 @@ module.exports = {
       .catch(error => {
         res.status(400).send(error);
       });
+  },
+  areaIntrusionMarina: function list(req, res) {
+    let query = `SELECT 
+    area_intrusion_marina.municipio,
+    area_intrusion_marina.gid, 
+    area_intrusion_marina.area
+  FROM 
+    public.area_intrusion_marina;
+  `;
+
+    sequelize
+      .query(query, { type: sequelize.QueryTypes.SELECT })
+      .then(data => {
+        return res.status(200).send(data);
+      })
+      .catch(error => {
+        res.status(400).send(error);
+      });
+  },
+  areaIntrusionMarinaByMun: function list(req, res) {
+    const municipio = req.params.municipio;
+    let query = `SELECT 
+    area_intrusion_marina.municipio,
+    area_intrusion_marina.gid, 
+    area_intrusion_marina.area
+  FROM 
+    public.area_intrusion_marina
+  WHERE 
+    area_intrusion_marina.municipio = '${municipio}';
+    `;
+
+    sequelize
+      .query(query, { type: sequelize.QueryTypes.SELECT })
+      .then(data => {
+        return res.status(200).send(data);
+      })
+      .catch(error => {
+        res.status(400).send(error);
+      });
   }
 };
